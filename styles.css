@@ -1,0 +1,602 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@600&family=Commissioner:wght@400;500;700&family=Fraunces:wght@700;900&family=Rubik:wght@300;400;500&display=swap');
+
+/* TO DO LIST */
+
+/*
+1. Cursor for all buttons;
+2. Animation for burger;
+3. Modal 1 - Additional moderate cyan formatting if selected;
+4. Bottom section animation for reward modal
+*/
+
+:root {
+
+    /* Colors */
+
+    /* Primary */
+
+    --Moderate-cyan: hsl(176, 50%, 47%);
+    --Dark-cyan: hsl(176, 72%, 28%);
+
+    /* Neutral */
+
+    --Black: hsl(0, 0%, 0%);
+    --Dark-gray: hsl(0, 0%, 48%);
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-size: 16px;
+    font-family: 'Commissioner', sans-serif;
+}
+
+.overlay.off {
+    display: none;
+}
+
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 1;
+  }
+
+header {
+    width: 375px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: transparent;
+    padding: 2rem 2rem 0 1.5rem;
+    z-index: 1500;
+}
+
+.logo {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+nav {
+    position: absolute;
+    text-align: left;
+    left: 0;
+    background-color: transparent;
+    width: 100%;
+    padding: 0rem 1.5rem;
+    display: none;
+    height: 0;
+    transition: all 2s;
+}
+
+nav ul {
+    background-color: white;
+    border-radius: 15px;
+}
+
+nav li {
+    list-style: none;
+    padding: 1.5rem 2rem;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+nav li.borders {
+    border-top: 0.5px solid rgba(112, 112, 112, 0.3);
+    border-bottom: 0.5px solid rgba(112, 112, 112, 0.3);
+}
+
+#nav-toggle {
+    display: none;
+}
+
+#nav-toggle:checked ~ nav {
+    display: block;
+    height: 100%;
+    transition: all 2s;
+}
+
+.nav-toggle-label {
+    position: absolute;
+    top:0;
+    right: 1.5rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::after,
+.nav-toggle-label span::before {
+    display: block;
+    position: relative;
+    background-color: white;
+    height: 3px;
+    width: 17px;
+    border-radius: 15px;
+}
+
+.nav-toggle-label span::after,
+.nav-toggle-label span::before {
+    content: '';
+    position: absolute;
+}
+
+.nav-toggle-label span::after {
+    bottom: 6px;
+}
+
+.nav-toggle-label span::before {
+    top: 6px;
+}
+
+body {
+    width: 375px;
+    background-color: rgba(182, 181, 181, 0.1);
+}
+
+.hero {
+    background-image: url('./images/image-hero-mobile.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100%;
+    height: 300px;
+}
+
+.mainSite {
+    position: absolute;
+    left: 50%;
+    width: 375px;
+    transform: translateX(-50%);
+}
+
+.mainContainer {
+    position: relative;
+    padding: 0 1.5rem;
+    top: -55px;
+    display: grid;
+    row-gap: 1.5rem;
+}
+
+.blockElement {
+    background-color: white;
+    border-radius: 15px;
+    border: 1px solid rgba(112, 112, 112, 0.1);
+    position: relative;
+    padding: 3rem 1.5rem 2.5rem 1.5rem;
+}
+
+.backingAndBookmark {
+    text-align: center;
+}
+
+.backingAndBookmark::before {
+    content: url('./images/logo-mastercraft.svg');
+    position: absolute;
+    top:-28px;
+    transform: translateX(-50%);
+}
+
+.backingAndBookmark h3 {
+    margin-bottom: 1rem;
+    padding: 0 2rem;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.backingAndBookmark p {
+    color: var(--Dark-gray);
+    margin-bottom: 2rem;
+    line-height: 1.5rem;
+    font-size: 14px;
+}
+
+.backingAndBookmarkButtons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.backThisProjectButton {
+    border: none;
+    padding: 1rem 2.5rem;
+    background-color: var(--Moderate-cyan);
+    color: white;
+    border-radius: 50px;
+    font-weight: 500;
+    margin-right: 0.5rem;
+}
+
+.bookmarkButton {
+    border: none;
+    border-radius: 50%;
+    height: 51px;
+    width: 51px;
+    background-color: var(--Black);
+    background-image: url('./images/icon-bookmark.svg');
+    background-position: center;
+}
+
+.backedBlock {
+    text-align: center;
+    padding-top: 0;
+}
+
+.totalAmountBacked, .totalBackers, .daysLeft {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.totalBackers {
+    position: relative;
+}
+
+.totalBackers::before {
+    content: '';
+    width: 80px;
+    height: 1px;
+    position: absolute;
+    background-color: rgba(112, 112, 112, 0.3);
+    transform: translateX(-50%);
+    top: 0;
+}
+
+.totalBackers::after {
+    content: '';
+    width: 80px;
+    height: 1px;
+    position: absolute;
+    background-color: rgba(112, 112, 112, 0.3);
+    transform: translateX(-50%);
+    bottom: 0;
+}
+
+.backedBlock h2 {
+    font-size: 30px;
+    margin-bottom: 0.5rem;
+}
+
+.backedBlock .backedAmountNumber {
+    font-size: 30px;
+}
+
+.backedBlock .smallBackedText {
+    color: var(--Dark-gray);
+    font-size: 14px;
+}
+
+.outterBar {
+    background-color: rgba(112, 112, 112, 0.1);
+    width: 100%;
+    height: 12px;
+    border-radius: 25px;
+}
+
+.innerBar {
+    background-color: var(--Moderate-cyan);
+    width: 80%;
+    height: 12px;
+    border-radius: 25px;
+}
+
+/* DONATION BLOCK */
+
+.donationGrid {
+    display: grid;
+    row-gap: 1.5rem;
+}
+
+.donationBlock .aboutProjectArticle h3 {
+    font-size: 18px;
+    margin-bottom: 1.5rem;
+}
+
+.donationBlock .aboutProjectArticle p {
+    color: var(--Dark-gray);
+    font-size: 14px;
+    line-height: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.donationElement {
+    padding: 2rem 1.5rem;
+    border: 1px solid rgba(112, 112, 112, 0.3);
+    border-radius: 10px;
+}
+
+.donationElement h3 {
+    font-size: 16px;
+    margin-bottom: 0.5rem;
+}
+
+.donationElement .pledge {
+    font-size: 15px;
+    color: var(--Moderate-cyan);
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.donationElement .donationElementMainText {
+    color: var(--Dark-gray);
+    font-size: 14px;
+    line-height: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.donationElement .howManyLeft {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.howManyLeft .numberLeft {
+    font-size: 30px;
+    font-weight: 700;
+    margin-right: 0.5rem;
+}
+
+.howManyLeft .leftPhrase {
+    color: var(--Dark-gray);
+    font-size: 15px;
+}
+
+.selectRewardButton {
+    border: none;
+    color: white;
+    background-color: var(--Moderate-cyan);
+    font-family: 'Commissioner', sans-serif;
+    padding: 1rem 3rem;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.outOfStock{
+    opacity: 0.5;
+}
+
+.outOfStock .selectRewardButton {
+    background-color: var(--Dark-gray);
+}
+
+/* MODALS */
+
+.modalDonationBlock.off {
+    display: none;
+}
+
+.modalDonationBlock {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,0);
+    background-color: white;
+    width: 310px;
+    z-index: 999;
+    border-radius: 15px;
+    padding: 2rem 1.5rem;
+}
+
+.modalDonationBlock > h2 {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.modalDonationBlock > p {
+    line-height: 1.5rem;
+    color: var(--Dark-gray);
+    font-size: 14px;
+    margin-bottom: 1rem;
+}
+
+.modalDonationBlock .exitCross {
+    position: absolute;
+    background-image: url('./images/icon-close-modal.svg');
+    width: 15px;
+    height: 15px;
+    right: 1.5rem;
+    top: 2rem;
+}
+
+.modalDonationGrid {
+    display: grid;
+    row-gap: 2rem;
+}
+
+.modalDonationElement {
+    border: 1px solid rgba(112, 112, 112, 0.3);
+    border-radius: 10px;
+}
+
+.modalDonationElement.greyedOut {
+    opacity: 50%;
+}
+
+.modalDonationTopPart, .modalDonationBottomPart {
+    padding: 1rem 1.5rem;
+}
+
+.modalTopMenu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+#noRewardRadio {
+    margin-right: 1rem;
+}
+
+#noRewardRadio:checked {
+    background-color: red;
+}
+
+.modalDonationElement .pledgeTitleAndAmount {
+    padding-left: 1rem;
+}
+
+.modalDonationElement .pledge {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.modalDonationElement .amountToPledge {
+    font-size: 14px;
+    color: var(--Moderate-cyan);
+    font-weight: 500;
+    margin-top: 0.5rem;
+}
+
+.modalDonationElement .donationElementMainText {
+    font-size: 14px;
+    color: var(--Dark-gray);
+    line-height: 1.5rem;
+}
+
+.modalDonationElement .howManyLeft {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+.modalDonationElement .numberLeft {
+    font-size: 18px;
+}
+
+.modalDonationElement .modalDonationBottomPart {
+    border-top: 1px solid rgba(112, 112, 112, 0.3);
+    height: 117px;
+    transition: all 0.5s;
+}
+
+.modalDonationBottomPart.off {
+    height: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    border: none;
+    transition: all 0.5s;
+    transform: scaleY(0);
+}
+
+.modalDonationElement .enterPledge {
+    font-size: 14px;
+    color: var(--Dark-gray);
+    margin-bottom: 1rem;
+    text-align: center;
+    /* margin-top: 1rem; */
+}
+
+.modalDonationElement .inputPledge {
+    display: inline;
+    width: 100px;
+    border: 1px solid rgba(112, 112, 112, 0.3);
+    padding: 1rem 1rem 1rem 2rem;
+    border-radius: 25px;
+    font-family: 'Commissioner', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.modalDonationElement .inputPledge::-webkit-outer-spin-button,
+.modalDonationElement .inputPledge::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.modalDonationElement .dollarSign {
+    display: inline;
+    position: relative;
+}
+
+.modalDonationElement .dollarSign::before {
+    position: absolute;
+    content: '$';
+    left: 15px;
+    top: 15px;
+    color: var(--Dark-gray);
+    font-family: 'Commissioner', sans-serif;
+    font-weight: 500;
+}
+
+.donationInputs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.modalDonationElement .continueButton {
+    padding: 1rem 1.5rem;
+    color: white;
+    font-family: 'Commissioner', sans-serif;
+    font-size: 14px;
+    background-color: var(--Moderate-cyan);
+    border-radius: 25px;
+    border: none;
+}
+
+.modalThanksForSupport.off {
+    display: none;
+}
+
+.modalThanksForSupport {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 10px;
+    width: 300px;
+    padding: 2rem 1rem;
+    z-index: 999;
+}
+
+.checkIcon, .modalThanksTopText, .modalThanksMainText {
+    margin-bottom: 1.5rem;
+}
+
+.modalThanksTopText {
+    font-size: 18px;
+}
+
+.modalThanksMainText {
+    color: var(--Dark-gray);
+    font-size: 14px;
+    line-height: 1.5rem;
+}
+
+.gotItButton {
+    color: white;
+    background-color: var(--Moderate-cyan);
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 25px;
+    font-family: 'Commissioner', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.attribution {
+    font-size: 11px;
+    text-align: center;
+}
+
+.attribution a {
+    color: hsl(228, 45%, 44%);
+}
